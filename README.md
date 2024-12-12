@@ -1,56 +1,67 @@
-# ماشین‌حساب ۴x۴ با استفاده از کیپد و LCD
+# 4x4 Calculator Using Keypad and LCD
 
-این پروژه یک ماشین‌حساب ساده است که با استفاده از میکروکنترلر ESP32 و صفحه‌نمایش LCD 4x4 ساخته شده است. کاربر می‌تواند از طریق یک صفحه‌کلید ۴x۴ ورودی‌ها را وارد کرده و عملیات‌های ریاضی را انجام دهد.
+Welcome to the **4x4 Calculator** project! This simple calculator, built with the ESP32 microcontroller, allows you to perform basic arithmetic operations using a 4x4 keypad and displays the results on an LCD screen. The project features a custom keypad handler and LCD handler libraries that simplify input handling and screen management.
 
-## اجزای پروژه:
-- **میکروکنترلر ESP32**
-- **صفحه‌نمایش LCD 4x4**
-- **صفحه‌کلید ۴x۴ (Keypad)**
-- **کتابخانه‌های استفاده شده:**
-  - `LiquidCrystal` برای کنترل LCD
-  - `Keypad` برای مدیریت ورودی کیپد
+## Table of Contents:
+1. [Project Overview](#project-overview)
+2. [Components Used](#components-used)
+3. [Hardware Connections](#hardware-connections)
+4. [Libraries Used](#libraries-used)
+5. [Installation Instructions](#installation-instructions)
+6. [How to Use](#how-to-use)
+7. [License](#license)
+8. [Acknowledgements](#acknowledgements)
 
-## اتصال سخت‌افزار:
-### صفحه‌کلید ۴x۴:
-- ردیف‌ها: پین‌های ۸، ۳، ۴۶، ۹
-- ستون‌ها: پین‌های ۱۰، ۱۱، ۱۲، ۱۳
+---
 
-### صفحه‌نمایش LCD:
-- RS: پین ۲۰
-- EN: پین ۲۱
-- D4: پین ۳۵
-- D5: پین ۴۵
-- D6: پین ۴۸
-- D7: پین ۴۷
+## Project Overview
+This project is designed to offer an easy-to-use calculator interface for basic mathematical operations. By pressing keys on the keypad, the user can input numbers and choose operations like addition, subtraction, multiplication, and division. The results are displayed on an LCD screen, and the calculation can be reset at any time.
 
-## نحوه استفاده:
-1. پس از روشن کردن دستگاه، صفحه‌کلید ۴x۴ نمایش داده می‌شود.
-2. ورودی‌ها (اعداد و عملیات‌های ریاضی) از طریق کیپد وارد می‌شود.
-3. نتیجه عملیات بر روی LCD نمایش داده می‌شود.
-4. برای ریست کردن ماشین‌حساب، کلید `C` را فشار دهید.
+---
 
-## توابع اصلی:
-- `resetCalculator()`: ریست کردن ماشین‌حساب و پاک کردن تمام ورودی‌ها و نتایج.
-- `performOperation()`: انجام عملیات‌های ریاضی (+، -، *، /).
-- `processKey()`: پردازش کلید فشرده‌شده از صفحه‌کلید و انجام عملیات‌های مربوطه.
+## Components Used:
+- **ESP32 Microcontroller**
+- **4x4 Keypad**
+- **16x2 LCD Display** (or compatible)
+- **Custom Libraries**:
+  - **KeypadHandler**: A custom library that abstracts keypad input and manages debouncing and key processing.
+  - **LCDHandler**: A custom library that controls the LCD screen, updating the display based on user inputs and results.
 
-## نصب کتابخانه‌ها:
-برای استفاده از این پروژه در Arduino IDE، نیاز به نصب کتابخانه‌های زیر دارید:
-- **Keypad**: برای مدیریت ورودی صفحه‌کلید ۴x۴.
-- **LiquidCrystal**: برای مدیریت صفحه‌نمایش LCD.
+---
 
-## آموزش نصب:
-1. کتابخانه‌ها را از طریق Arduino IDE نصب کنید.
-2. کد را بر روی میکروکنترلر ESP32 خود بارگذاری کنید.
-3. اتصالات سخت‌افزاری را طبق توضیحات بالا انجام دهید.
+## Hardware Connections:
 
-## نتایج:
-- نمایش عددهای وارد شده و عملیات در حال انجام بر روی صفحه‌نمایش.
-- نمایش نتیجه عملیات پس از فشردن کلید `=`.
+### Keypad (4x4):
+- **Rows** connected to pins: `8, 3, 46, 9`
+- **Columns** connected to pins: `10, 11, 12, 13`
 
-## نکات:
-- پس از انجام هر عملیات، نتیجه بر روی LCD نمایش داده می‌شود.
-- پس از انجام عملیات، عدد اول ذخیره می‌شود و می‌توانید عملیات جدید را انجام دهید.
+### LCD Display:
+- **Data Pins (D4-D7)** connected to pins: `47, 48, 45, 35`
+- **Enable Pin (E)** connected to pin: `21`
+- **Register Select Pin (RS)** connected to pin: `20`
 
-## مجوز:
-این پروژه تحت مجوز MIT منتشر شده است.
+---
+
+## Libraries Used:
+
+### **KeypadHandler**
+The **KeypadHandler** library simplifies handling the 4x4 keypad. It takes care of:
+- **Debouncing**: The library ensures that only one input is registered per keypress, avoiding multiple triggers.
+- **Key Mapping**: It maps the rows and columns of the keypad to their respective actions (numbers or operations).
+- **Key Input Management**: It continuously checks for keypresses and returns the corresponding character.
+
+### **LCDHandler**
+The **LCDHandler** library manages the LCD display's interactions. It handles:
+- **Screen Initialization**: Automatically initializes the LCD with the necessary configuration.
+- **Dynamic Updates**: Updates the screen as the user enters numbers or operations.
+- **Clear Function**: Provides functionality to clear the screen and reset the calculation.
+
+These libraries are designed to be easily reusable for other projects involving keypads and LCDs.
+
+---
+
+## Installation Instructions:
+
+1. **Clone the repository** to your local machine:
+   ```bash
+   git clone https://github.com/yourusername/4x4-calculator.git
