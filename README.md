@@ -64,4 +64,4 @@ These libraries are designed to be easily reusable for other projects involving 
 
 1. **Clone the repository** to your local machine:
    ```bash
-   git clone https://github.com/mobinAlijani/4x4-calculator.git
+   git clone https://github.com/mobinAlijani/Calculator_Lcd.git
